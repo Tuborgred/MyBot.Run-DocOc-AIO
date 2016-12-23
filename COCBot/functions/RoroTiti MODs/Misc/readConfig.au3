@@ -95,3 +95,11 @@ For $i = 1 To 5
 	IniReadS($ichkDonateAccount[$i], $SSAConfig, "SwitchAccount", "chkDonateAccount[" & $i & "]", "0")
 	IniReadS($icmbAccount[$i], $SSAConfig, "SwitchAccount", "cmbAccount[" & $i & "]", "0")
 Next
+;==========;Russian Languages by Kychera==========
+	   $ichkRusLang = IniRead($config, "Lang", "chkRusLang", "0")
+       $ichkRusLang2 = IniRead($config, "Lang", "chkRusLang2", "0")	   
+	   ;sw langs
+        $icmbLang = IniRead($config, "Lang", "cmbLang", "8")
+	  ;==========;Russian Languages by Kychera==========
+	;modification Chat by rulesss
+	  $ichkchatdelay = IniRead($config, "global", "chdelay", "0")  

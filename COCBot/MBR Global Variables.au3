@@ -464,6 +464,7 @@ Global	$dirTempDebug = $sProfilePath & "\" & $sCurrProfile & "\Temp\Debug\"
 Func SetupProfileFolder()
 	$config = $sProfilePath & "\" & $sCurrProfile & "\config.ini"
 	$ChartPath = $sProfilePath & "\" & $sCurrProfile & "\Chart\ChartData" ; The Rest of the File name is completed in the called functions Example $chartpath &"Total.ini"
+	$chatIni = $sProfilePath & "\" & $sCurrProfile & "\chat.ini"
 	$InputConfigFile = $sProfilePath & "\" & $sCurrProfile & "\InputConfig.ini"
 	$statChkWeakBase = $sProfilePath & "\" & $sCurrProfile & "\stats_chkweakbase.INI"
 	$statChkTownHall = $sProfilePath & "\" & $sCurrProfile & "\stats_chktownhall.INI"
@@ -578,7 +579,7 @@ Global $NotifyAlertMaintenance = 1
 Global $NotifyAlertBAN = 1
 Global $NotifyAlertBOTUpdate = 1
 Global $iReportIdleBuilder = 0
-
+Global $NotifyAlertBOTSleep = 0
 
 ;Schedule---------------------------------------------------------------
 Global $NotifyScheduleHoursEnable
@@ -609,7 +610,7 @@ Global $TGLastMessage = ""
 Global $grpNotify, $chkNotifyPBEnabled,$chkNotifyRemote,$chkNotifyDeleteAllPBPushes,$btnNotifyDeleteMessages,$chkNotifyDeleteOldPBPushes,$cmbNotifyPushHours
 Global $txbNotifyPBToken, $txbNotifyTGToken, $txbNotifyOrigin, $chkNotifyAlertMatchFound, $chkNotifyAlertLastRaidIMG, $chkNotifyAlertLastRaidTXT, $chkNotifyAlertCampFull
 Global $chkNotifyAlertUpgradeWall, $chkNotifyAlertOutOfSync, $chkNotifyAlertTakeBreak, $chkNotifyAlertBuilderIdle, $chkNotifyAlertVillageStats, $chkNotifyAlertLastAttack
-Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate
+Global $chkNotifyAlertAnotherDevice, $chkNotifyAlertMaintenance, $chkNotifyAlertBAN, $chkNotifyBOTUpdate, $chkNotifyBOTSleep
 ;--------------------------------------------------------------------------
 ; Notify Revamp - PushBullet/Telegram variables - Added by DocOC team
 ;-------------------------------------------------------------------------
@@ -1327,7 +1328,19 @@ Global $sLanguage = "English"
 Global $aLanguageFile[1][2]; undimmed language file array [FileName][DisplayName]
 Global Const $sDefaultLanguage = "English"
 Global $aLanguage[1][1] ;undimmed language array
-
+;====================
+; ChatBot -modification by rulesss
+Global $FoundChatMessage = 0
+Global $ChatbotStartTime
+;=====================
+;==========Modified kychera===========
+Global $chkRusLang2
+Global $ichkRusLang2 = 0
+Global $chkRusLang
+Global $ichkRusLang = 0
+Global $cmbLang
+Global $icmbLang
+;======================================
 ;images
 Global $iDetectedImageType = 0
 Global $iDeadBase75percent = 1

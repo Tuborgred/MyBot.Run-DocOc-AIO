@@ -97,3 +97,6 @@ Global $IsDonateAccount = 0
 Global $SSAConfig = $sProfilePath & "\Profile.ini"
 
 ; ================================================== SmartSwitchAccount END ================================================== ;
+; ChatBot -modification by rulesss
+Global $FoundChatMessage = 0
+Global $ChatbotStartTime

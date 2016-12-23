@@ -183,3 +183,21 @@ For $i = 1 To 5
 	IniWrite($SSAConfig, "SwitchAccount", "chkDonateAccount[" & $i & "]", $ichkDonateAccount[$i])
 	IniWrite($SSAConfig, "SwitchAccount", "cmbAccount[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbAccount[$i]))
 Next
+;==========;Russian Languages by Kychera==========
+	If GUICtrlRead($chkRusLang) = $GUI_CHECKED Then
+		$ichkRusLang = 1
+	Else
+		$ichkRusLang = 0
+	EndIf
+IniWriteS($config, "Lang", "chkRusLang", $ichkRusLang)
+	If GUICtrlRead($chkRusLang2) = $GUI_CHECKED Then
+		$ichkRusLang2 = 1
+	Else
+		$ichkRusLang2 = 0
+	EndIf
+IniWriteS($config, "Lang", "chkRusLang2", $ichkRusLang2)
+$icmbLang = _GUICtrlComboBox_GetCurSel($cmbLang)
+IniWriteS($config, "Lang", "cmbLang", $icmbLang)
+
+;modification Chat by rulesss
+	IniWrite($config, "global", "chdelay", GUICtrlRead($chkchatdelay))
