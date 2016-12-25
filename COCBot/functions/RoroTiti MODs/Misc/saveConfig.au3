@@ -183,3 +183,28 @@ For $i = 1 To 5
 	IniWrite($SSAConfig, "SwitchAccount", "chkDonateAccount[" & $i & "]", $ichkDonateAccount[$i])
 	IniWrite($SSAConfig, "SwitchAccount", "cmbAccount[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbAccount[$i]))
 Next
+
+    ;forecast
+	IniWrite($config, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
+
+	If GUICtrlRead($chkForecastBoost) = $GUI_CHECKED Then
+		IniWrite($config, "forecast", "chkForecastBoost", 1)
+	Else
+		IniWrite($config, "forecast", "chkForecastBoost", 0)
+	EndIf
+
+	If GUICtrlRead($chkForecastHopingSwitchMax) = $GUI_CHECKED Then
+		IniWrite($config, "profiles", "chkForecastHopingSwitchMax", 1)
+	Else
+		IniWrite($config, "profiles", "chkForecastHopingSwitchMax", 0)
+	EndIf
+	IniWrite($config, "profiles", "cmbForecastHopingSwitchMax", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMax))
+	IniWrite($config, "profiles", "txtForecastHopingSwitchMax", GUICtrlRead($txtForecastHopingSwitchMax))
+
+	If GUICtrlRead($chkForecastHopingSwitchMin) = $GUI_CHECKED Then
+		IniWrite($config, "profiles", "chkForecastHopingSwitchMin", 1)
+	Else
+		IniWrite($config, "profiles", "chkForecastHopingSwitchMin", 0)
+	EndIf
+	IniWrite($config, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))
+	IniWrite($config, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))

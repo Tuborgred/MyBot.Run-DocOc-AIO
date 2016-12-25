@@ -57,7 +57,7 @@ Global $aTabControlsTHSnipe[4] = [$hGUI_THSNIPE_TAB, $hGUI_THSNIPE_TAB_ITEM1, $h
 Global $aTabControlsAttackOptions[5] = [$hGUI_AttackOption_TAB, $hGUI_AttackOption_TAB_ITEM1, $hGUI_AttackOption_TAB_ITEM2, $hGUI_AttackOption_TAB_ITEM3, $hGUI_AttackOption_TAB_ITEM4]
 Global $aTabControlsStrategies[3] = [$hGUI_STRATEGIES_TAB, $hGUI_STRATEGIES_TAB_ITEM1, $hGUI_STRATEGIES_TAB_ITEM2]
 
-Global $aTabControlsMod[6] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1]
+Global $aTabControlsMod[5] = [$hGUI_MOD_TAB, $hGUI_MOD_TAB_ITEM1, $hGUI_MOD_TAB_ITEM2, $hGUI_MOD_TAB_ITEM4]
 
 Global $aTabControlsBot[6] = [$hGUI_BOT_TAB, $hGUI_BOT_TAB_ITEM1, $hGUI_BOT_TAB_ITEM2, $hGUI_BOT_TAB_ITEM3, $hGUI_BOT_TAB_ITEM4, $hGUI_BOT_TAB_ITEM5]
 Global $aTabControlsStats[4] = [$hGUI_STATS_TAB, $hGUI_STATS_TAB_ITEM1, $hGUI_STATS_TAB_ITEM2, $hGUI_STATS_TAB_ITEM3]
@@ -151,6 +151,7 @@ AtkLogHead()
 #include "GUI\MBR GUI Control Preset.au3"
 #include "GUI\MBR GUI Control Child Misc.au3"
 #include "functions\RoroTiti MODs\Misc\MBR GUI Control.au3"
+#include "GUI\MBR GUI Control Tab Meteo.au3"
 
 ; Accelerator Key, more responsive than buttons in run-mode
 Local $aAccelKeys[2][2] = [["{ESC}", $btnStop], ["{PAUSE}", $btnPause]]
@@ -538,6 +539,22 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 		Case $tabMain
 			; Handle RichText controls
 			tabMain()
+					If GUICtrlRead($tabMain, 1) = $tabMod And GUICtrlRead($hGUI_MOD_TAB, 1) = $hGUI_MOD_TAB_ITEM4 Then
+						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
+						Local $hFrom = DllStructGetData($tTag, 1)
+						Local $iID   = DllStructGetData($tTag, 2)
+						Local $iCode = DllStructGetData($tTag, 3)
+						Local $iPos  = DllStructGetData($tTag, 4)
+
+						If $iCode = -551 Then ;tab selected
+							GUICtrlSetState($hGUI_MOD_TAB_ITEM4, $GUI_SHOW)
+							sleep(100)
+							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
+							setForecast2()
+							$TimerForecast = TimerInit()
+							EndIf
+						EndIf
+					EndIf
 		Case $hGUI_VILLAGE_TAB
 			tabVillage()
 		Case $hGUI_ATTACK_TAB
@@ -552,6 +569,41 @@ Func GUIControl_WM_NOTIFY($hWind, $iMsg, $wParam, $lParam)
 			tabTHSnipe()
 		Case $hGUI_BOT_TAB
 			tabBot()
+	    Case $hGUI_MOD_TAB
+				If GUICtrlRead($hGUI_MOD_TAB, 1) = $hGUI_MOD_TAB_ITEM4 Then
+						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
+						Local $hFrom = DllStructGetData($tTag, 1)
+						Local $iID   = DllStructGetData($tTag, 2)
+						Local $iCode = DllStructGetData($tTag, 3)
+						Local $iPos  = DllStructGetData($tTag, 4)
+
+						If $iCode = -551 Then ;tab selected
+							GUICtrlSetState($hGUI_MOD_TAB_ITEM4, $GUI_SHOW)
+							sleep(100)
+							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
+							setForecast()
+							EndIf
+						EndIf
+					EndIf
+
+					tabMain()
+
+					If GUICtrlRead($hGUI_MOD_TAB, 1) = $hGUI_MOD_TAB_ITEM4 Then
+						Local $tTag  = DllStructCreate("hwnd;int;int;int;int;int;int;ptr;int;int;int;int;int;int;int;int;int;int;int;int", $lParam)
+						Local $hFrom = DllStructGetData($tTag, 1)
+						Local $iID   = DllStructGetData($tTag, 2)
+						Local $iCode = DllStructGetData($tTag, 3)
+						Local $iPos  = DllStructGetData($tTag, 4)
+
+						If $iCode = -551 Then ;tab selected
+							GUICtrlSetState($hGUI_MOD_TAB_ITEM4, $GUI_SHOW)
+							sleep(100)
+							If TimerDiff($TimerForecast) > (1 * 10000) Then ; 1 Refresh Graphique toutes les 5 mn maxi, faut pas abuser
+							setForecast2()
+							$TimerForecast = TimerInit()
+							EndIf
+						EndIf
+					EndIf
 		Case Else
 			$bCheckEmbeddedShield = False
 	EndSwitch
@@ -798,6 +850,7 @@ Func SetRedrawBotWindow($bEnableRedraw, $bCheckRedrawBotWindow = True, $bForceRe
 		; set dirty redraw flag
 		$bRedrawBotWindow[1] = True
 	EndIf
+	redrawForecast()
 	Return $bWasRedraw
 EndFunc   ;==>SetRedrawBotWindow
 

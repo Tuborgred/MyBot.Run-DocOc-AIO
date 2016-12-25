@@ -172,6 +172,8 @@ DirCopy(@ScriptDir & "\Temp", $sProfilePath & "\" & $sCurrProfile & "\Temp", $FC
 DirRemove(@ScriptDir & "\Logs", 1)
 DirRemove(@ScriptDir & "\Loots", 1)
 DirRemove(@ScriptDir & "\Temp", 1)
+Local $forecastDir = @ScriptDir & "\COCBot\Forecast"
+DirCreate($forecastDir)
 
 ;Setup profile if doesn't exist yet
 If FileExists($config) = 0 Then
@@ -323,6 +325,14 @@ Func runBot() ;Bot that runs everything in order
 			TrainDonateOnlyLoop()
 
 			If _Sleep($iDelayRunBot3) Then Return
+			If $iChkForecastBoost = 1 Then
+				$currentForecast = readCurrentForecast()
+					If $currentForecast >= Number($iTxtForecastBoost, 3) Then
+					SetLog("Boost Time !", $COLOR_GREEN)
+					Else
+					SetLog("Forecast index is below the required value, no boost !", $COLOR_RED)
+					EndIf
+			EndIf
 			If IsSearchAttackEnabled() Then ; if attack is disabled skip reporting, requesting, donating, training, and boosting
 				Local $aRndFuncList[6] = ['ReplayShare', 'NotifyReport', 'BoostBarracks', 'BoostSpellFactories', 'BoostHeroes', 'RequestCC']
 				While 1
@@ -431,7 +441,8 @@ EndFunc   ;==>runBot
 
 Func Idle() ;Sequence that runs until Full Army
 	Local $TimeIdle = 0 ;In Seconds
-	Local $ReturnT = ($CurCamp >= ($TotalCamp * $fulltroop / 100) * .95) ? (True) : (False)
+	ForecastSwitch()
+    Local $ReturnT = ($CurCamp >= ($TotalCamp * $fulltroop / 100) * .95) ? (True) : (False)
 	Local $iLogOnlyOnce = 0 ; to insure skip donate log's only one time
 	Local $iReHere = 0 ; Counter for Donate loop
 
