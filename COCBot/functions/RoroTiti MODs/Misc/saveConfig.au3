@@ -184,7 +184,7 @@ For $i = 1 To 5
 	IniWrite($SSAConfig, "SwitchAccount", "cmbAccount[" & $i & "]", _GUICtrlComboBox_GetCurSel($cmbAccount[$i]))
 Next
 
-    ;forecast
+    ;forecast Added by rulesss
 	IniWrite($config, "forecast", "txtForecastBoost", GUICtrlRead($txtForecastBoost))
 
 	If GUICtrlRead($chkForecastBoost) = $GUI_CHECKED Then
@@ -208,3 +208,6 @@ Next
 	EndIf
 	IniWrite($config, "profiles", "cmbForecastHopingSwitchMin", _GUICtrlComboBox_GetCurSel($cmbForecastHopingSwitchMin))
 	IniWrite($config, "profiles", "txtForecastHopingSwitchMin", GUICtrlRead($txtForecastHopingSwitchMin))
+	;Added Multi Switch Language by rulesss and Kychera
+	$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)
+    IniWriteS($config, "Lang", "cmbSwLang", $icmbSwLang)

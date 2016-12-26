@@ -228,6 +228,13 @@ $picProfileTrophy = GUICtrlCreatePic(@ScriptDir & "\Images\TrophyLeague.jpg", $x
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 setupProfileComboBoxswitch()
 
+;~ -------------------------------------------------------------
+;~ This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.                   A LAISSER IMPERATIVEMENT !!!!!!!!!!!!!!
+;~ -------------------------------------------------------------
+Global $LastControlToHideMOD = GUICtrlCreateDummy()
+Global $iPrevState[$LastControlToHideMOD + 1]
+;~ -------------------------------------------------------------
+
 GUICtrlCreateTabItem("")
 
 $hGUI_MOD_TAB_ITEM4 = GUICtrlCreateTabItem(GetTranslated(107,1,"Forecast"))
@@ -293,11 +300,7 @@ $y += - 27
 			_GUICtrlEdit_SetReadOnly(-1, True)
 GUICtrlCreateGroup("", -99, -99, 1, 1)
 setupProfileComboBox()
+GUICtrlCreateGroup("", -99, -99, 1, 1)
+	$cmbSwLang = GUICtrlCreateCombo("", $x, $y + 50, 45, 45, BitOR($CBS_DROPDOWNLIST, $CBS_AUTOHSCROLL))
+             GUICtrlSetData(-1, "EN|RU|FR|DE|ES|IT|PT|IN", "EN")
 GUICtrlCreateTabItem("")
-
-;~ -------------------------------------------------------------
-;~ This dummy is used in btnStart and btnStop to disable/enable all labels, text, buttons etc. on all tabs.                   A LAISSER IMPERATIVEMENT !!!!!!!!!!!!!!
-;~ -------------------------------------------------------------
-Global $LastControlToHideMOD = GUICtrlCreateDummy()
-Global $iPrevState[$LastControlToHideMOD + 1]
-;~ -------------------------------------------------------------

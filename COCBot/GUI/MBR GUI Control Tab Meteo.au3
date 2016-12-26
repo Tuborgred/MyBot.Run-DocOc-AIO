@@ -53,6 +53,7 @@ Func chkForecastHopingSwitchMin()
 	EndIf
 EndFunc
 
+;Added Multi Switch Language by rulesss and Kychera
 Func setForecast()
 	_IENavigate($oIE, "about:blank")
 	_IEBodyWriteHTML($oIE, "<div style='width:440px;height:345px;padding:0;overflow:hidden;position: absolute;top:5x;left:-25px;z-index:0;'><center><img src='" & @ScriptDir & "\COCBot\Forecast\loading.gif'></center></div>")
@@ -60,6 +61,41 @@ EndFunc
 
 Func setForecast2()
 	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=english  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast3()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=russian  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast4()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=french  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast5()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=german  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast6()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=spanish  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast7()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=italian  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast8()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=portuguese  ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
+	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
+EndFunc
+
+Func setForecast9()
+	RunWait("..\COCBot\Forecast\wkhtmltoimage.exe --width 3100 http://clashofclansforecaster.com/?lang=indonesian ..\COCBot\Forecast\forecast.jpg", "", @SW_HIDE)
 	_IEBodyWriteHTML($oIE, "<img style='margin: -10px 0px -10px -100px;' src='" & @ScriptDir & "\COCBot\Forecast\forecast.jpg' width='1700'>")
 EndFunc
 
@@ -239,15 +275,15 @@ Func CalculateIndex($minutes)
 
 	SetLog(GetTranslated(107,10,"Viewing weather information ..."), $COLOR_PURPLE)
 	If $iRound1 <= $index25 Then
-	SetLog("Index of Loot : " & $iRound1 & " ---> Ужасно !", $COLOR_RED)
+	SetLog("Index of Loot : " & $iRound1 & " ---> Awful!", $COLOR_RED)
 	Elseif $iRound1 > $index25 and $iRound1 <= $index4 Then
-	SetLog("Index of Loot : " & $iRound1 & " ---> Плохо", $COLOR_DEEPPINK)
+	SetLog("Index of Loot : " & $iRound1 & " ---> Bad", $COLOR_DEEPPINK)
 	Elseif $iRound1 > $index4 and $iRound1 <= $index6 Then
-	SetLog("Index of Loot  : " & $iRound1 & " ---> Нормально", $COLOR_ORANGE)
+	SetLog("Index of Loot  : " & $iRound1 & " ---> Fine", $COLOR_ORANGE)
 	ElseIf $iRound1 > $index6 and $iRound1 <= $index8 Then
-	SetLog("Index of Loot : " & $iRound1 & " ---> Хорошо !", $COLOR_GREEN)
+	SetLog("Index of Loot : " & $iRound1 & " ---> Good!", $COLOR_GREEN)
 	ElseIf $iRound1 > $index8 Then
-	SetLog("Index of Loot  : " & $iRound1 & " ---> Великолепно !!", $COLOR_DARKGREEN)
+	SetLog("Index of Loot  : " & $iRound1 & " ---> Perfect !!", $COLOR_DARKGREEN)
 	Endif
 	Return _RoundDown($index, 1)
 EndFunc

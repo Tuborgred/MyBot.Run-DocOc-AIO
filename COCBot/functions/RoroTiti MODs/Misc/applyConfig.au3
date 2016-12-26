@@ -288,7 +288,7 @@ Next
 
 chkSwitchAccount()
 
-    ;Forecast
+    ;Forecast Added by rulesss
 	GUICtrlSetData($txtForecastBoost, $iTxtForecastBoost)
 	If $iChkForecastBoost = 1 Then
 		GUICtrlSetState($chkForecastBoost, $GUI_CHECKED)
@@ -314,3 +314,6 @@ chkSwitchAccount()
 	_GUICtrlComboBox_SetCurSel($cmbForecastHopingSwitchMin, $icmbForecastHopingSwitchMin)
 	GUICtrlSetData($txtForecastHopingSwitchMin, $itxtForecastHopingSwitchMin)
 	chkForecastHopingSwitchMin()
+	;Added Multi Switch Language by rulesss and Kychera
+	_GUICtrlComboBox_SetCurSel($cmbSwLang, $icmbSwLang)
+	$icmbSwLang = _GUICtrlComboBox_GetCurSel($cmbSwLang)
